@@ -1,1 +1,22 @@
-
+{
+  "name": "homework1",
+  "version": "0.0.1",
+  "description": "1st homework",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "homework",
+    "node",
+    "javascript"
+  ],
+  "author": "oZhang",
+  "license": "ISC",
+  "devDependencies": {
+    "should": "^13.0.1"
+  }
+}
