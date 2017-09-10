@@ -20,6 +20,7 @@ function change (amount) {
   return result;
 }
 
+<<<<<<< HEAD
 
 function splitString (stringToSplit) {
   // initialize the characters to get rid off
@@ -62,3 +63,5 @@ function scramble(input) {
 module.exports = {
   change, splitString, scramble
 };
+=======
+>>>>>>> 373d72e9f0fad27138e8046c8b0b6a1a262b27ed
