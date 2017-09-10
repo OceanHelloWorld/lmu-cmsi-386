@@ -18,5 +18,6 @@
   "license": "ISC",
   "devDependencies": {
     "should": "^13.0.1"
-  }
+  },
+  "dependencies": {}
 }
