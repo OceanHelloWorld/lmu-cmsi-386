@@ -88,6 +88,28 @@ function* powersGenerator(base, limit) {
   }
 }
 
+
+
+
+function say(firstArg) {
+  // set the base string
+  var arg = [];
+  function words(nextArg) {
+    // stop function when it reaches empty input
+    if (nextArg == undefined) {
+      return arg.join(' ');
+    }
+    // keep adding arguments to the end of base string
+    arg.push(nextArg);
+    return words;
+  }
+  // output the strings put together
+  return words(firstArg);
+}
+
+
+
+
 function interleave() {
   // set array1 is the array from 1st input argument; arrayOutput is the output of this function
   const array1 = arguments[0];
@@ -127,84 +149,57 @@ function interleave() {
   return arrayOutput;
 }
 
-// not working!!!
-// Don't know how to format the function
-/*
-function makeCryptoFunctions(string, encryption) {
-  const crypto = require('crypto');
-  const secret = 'abcdefg';
-  const hash = crypto.createHmac('sha256', secret).update('I love cupcakes').digest('hex');
-  console.log(hash)
-}
-*/
 
-function randomName(gender, region) {
-  var options = {
+
+function randomName(data) {
+  // acquire the data from API
+  const options = {
     method: 'GET',
     json: true,
-    uri: 'http://uinames.com/api/',
-    qs: { gender, region, amount: 1},
+    uri: `http://uinames.com/api/?gender=${data.gender}&region=${data.region}&amount=1`,
   };
-
-  return rp(options).then(s => console.log(`${s.surname},${s.name}`));
+  // output the data acquired
+  return rp(options).then((s) => console.log(`${s.surname}, ${s.name}`));
 }
-
-// Not working cylinder function
-/*
-function cylinder(input) {
-  const pi = 3.1415926;
-  let shapeHeight = 1.0;
-  let shapeRadius = 1.0;
-  shapeHeight = input.height;
-  shapeRadius = input.radius;
-  let surfaceA;
-  let volumeA;
-  function surfaceArea() {
-    surfaceA = 2 * pi * shapeRadius * (shapeRadius + shapeHeight);
-    return surfaceA;
-  }
-  function volume() {
-    volumeA = pi * shapeRadius * shapeRadius * shapeHeight;
-    return volumeA;
-  }
-  function toString() {
-    return ('Cylinder with radius ' + shapeRadius + ' and height ' + shapeHeight);
-  }
-  function stretch(stretchValue) {
-    shapeHeight *= stretchValue;
-  }
-  surfaceArea();
-  volume();
-  toString();
-  stretch(stretchValue);
-}
-*/
 
 // Not working 100% !!!!
 // not default to 1, can't accept empty object, doesnt have immutable fields
-var cylinder = function (r) {
-  var cyld = Object.create(cylinder.prototype);
-  cyld.radius = 1;
-  cyld.height = 1;
+let cylinder = function (r) {
+  const cyld = Object.create(cylinder.prototype);
+  // if no radius set it default ot 1
+  if (r.radius == null) {
+    r.radius = 1;
+  }
+  // if no height set it default ot 1
+  if (r.height == null) {
+    r.height = 1;
+  }
+  // pass the input parameters
   cyld.radius = r.radius;
   cyld.height = r.height;
+  // attempt to freeze the input
+  Object.freeze(this.radius);
+  Object.freeze(this.height);
   return cyld;
 };
 
 cylinder.prototype = {
-  surfaceArea: function () {return 2 * Math.PI * this.radius * (this.radius + this.height);},
-  volume: function () {return Math.PI * this.radius * this.radius * this.height;},
-  toString: function () {return 'Cylinder with radius ' + this.radius + ' and height ' + this.height},
-  stretch: function (stretchValue) {return this.height *= stretchValue;},
-  widen: function (widenValue) {return this.radius *=widenValue;}
+  // create prototype of the function
+  // calculating surfaceArea from input radius and height
+  surfaceArea: function () { return 2 * Math.PI * this.radius * (this.radius + this.height); },
+  // calculating volume from input radius and height
+  volume: function () { return Math.PI * this.radius * this.radius * this.height; },
+  // output the string as requested
+  toString: function () { return 'Cylinder with radius ' + this.radius + ' and height ' + this.height; },
+  // calculating stretched value from input height
+
+  stretch: function (stretchValue) { return this.height *= stretchValue; },
+  // calculating widened value from input radius
+
+  widen: function (widenValue) { return this.radius *= widenValue; }
 };
-
-// randomName hint:
-//
-
-
 
 // export this code for warmup-test.js
 module.exports = {
-  change, stripQuotes, scramble, powers, powersGenerator, interleave, randomName, cylinder,
+  change, stripQuotes, scramble, powers, powersGenerator, say, interleave, randomName, cylinder,
 };
