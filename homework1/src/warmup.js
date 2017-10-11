@@ -3,8 +3,6 @@
 
 var rp = require('request-promise');
 
-// not working, unknown, output as expected in code performance
-
 function change(amount) {
   // output an error when the input a negative amount
   if (amount < 0) {
@@ -61,9 +59,6 @@ function scramble(input) {
   return output.join('');
 }
 
-
-// not working!!!
-// not understanding how => work
 function powers(base, limit, p) {
   // power is the power of output
   let power = 0;
@@ -74,10 +69,6 @@ function powers(base, limit, p) {
   }
 }
 
-// not working!!!
-// question about solution of the test harness "  const g1 = powersGenerator(2, 1);
-//    g1.next().should.eql({ value: 1, done: false });
-
 function* powersGenerator(base, limit) {
   // power = the power of input
   let power = 0;
@@ -87,9 +78,6 @@ function* powersGenerator(base, limit) {
     power += 1;
   }
 }
-
-
-
 
 function say(firstArg) {
   // set the base string
@@ -106,9 +94,6 @@ function say(firstArg) {
   // output the strings put together
   return words(firstArg);
 }
-
-
-
 
 function interleave() {
   // set array1 is the array from 1st input argument; arrayOutput is the output of this function
@@ -149,8 +134,6 @@ function interleave() {
   return arrayOutput;
 }
 
-
-
 function randomName(data) {
   // acquire the data from API
   const options = {
@@ -162,8 +145,6 @@ function randomName(data) {
   return rp(options).then((s) => console.log(`${s.surname}, ${s.name}`));
 }
 
-// Not working 100% !!!!
-// not default to 1, can't accept empty object, doesnt have immutable fields
 let cylinder = function (r) {
   const cyld = Object.create(cylinder.prototype);
   // if no radius set it default ot 1
