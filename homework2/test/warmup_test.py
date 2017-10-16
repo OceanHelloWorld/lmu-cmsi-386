@@ -1,5 +1,6 @@
 import math
 import pytest
+import re
 from warmup import (change, strip_quotes, scramble, say, triples, powers,
                     interleave, Cylinder, make_crypto_functions, random_name)
 

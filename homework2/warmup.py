@@ -15,7 +15,7 @@ def change(amount):
 
 
 def strip_quotes(text):
-  return (re.sub ('[",\']', '', text))
+  return (re.sub ('["\']', '', text))
 
 
 # Now you can call printme function
@@ -25,14 +25,19 @@ def scramble(word):
     return ''.join(word)
 
 
-def say(firstWord):
-    words = []
-    def sayMore(word):
-        if (word == none):
-            return words.join('');
-        words.push(word)
-        return sayMore()
-    return sayMore(firstWord)
+def say(v = None):
+  if v is None:
+    return ''
+  value = [v]
+  def inner_adder(v = None):
+    if v is None:
+      return ' '.join(value)
+    else:
+      value.append(v)
+      return inner_adder
+  inner_adder.v = value # save value
+  return inner_adder
+
 
 def powers(base, limit):
   power = 0;
@@ -66,8 +71,34 @@ def interleave(first, *therest):
         output.append(therest[i])
     return output
 
-def Cylinder():
-    pass
+class Cylinder:
+    "A circle with a 2-D center point and a radius."
+    def __init__(self, radius = 1, height = 1):
+        if radius == False:
+          self.radius = 1
+        elif height == False:
+          self.height = 1
+        elif radius == None and height == None:
+          self.radius = 1
+          self.height = 1
+        else:
+          self.radius = radius
+          self.height = height
+    @property
+    def surface_area(self):
+        return 2 * math.pi * self.radius * (self.radius + self.height)
+    @property
+    def volume(self):
+        return math.pi * self.radius ** 2 * self.height
+
+    def stretch(self, factor):
+        self.height *= factor
+        return self
+
+    def widen(self, factor):
+        self.radius *= factor
+        return self
+
 
 def make_crypto_functions():
     pass
@@ -80,22 +111,7 @@ def random_name():
 
 
 
-''' change
-use div mod
-
-strip quotes
-re.sub
-
-scramble
-random.sample
-
-powers
-use yield
-
-
-say
-function in function (word = none)
-
+''' 
 
 (a,*b):= first argument is a, second to last is lambda
 

@@ -1,7 +1,4 @@
 {
   "test/warmup_test.py::test_crypto": true,
-  "test/warmup_test.py::test_cylinder": true,
-  "test/warmup_test.py::test_random_name": true,
-  "test/warmup_test.py::test_say": true,
-  "test/warmup_test.py::test_strip_quotes": true
+  "test/warmup_test.py::test_random_name": true
 }
