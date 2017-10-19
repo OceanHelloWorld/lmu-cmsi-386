@@ -1,7 +1,12 @@
 import math
 import re
 import random
+import os
+import base64
+from Crypto.Cipher import AES
+from Crypto.Hash import SHA256
 
+# the minimum amount coins required to represent the amount, and it shows how much coins needed for each coin value
 def change(amount):
     if amount < 0:
         raise ValueError('amount cannot be negative')
@@ -13,18 +18,18 @@ def change(amount):
             amount = amount % coin[i]
         return tuple(coin_change)
 
-
+# print out the string but without apostrophes and double quotes
 def strip_quotes(text):
   return (re.sub ('["\']', '', text))
 
 
-# Now you can call printme function
+# output a random string that shuffled the words given from input
 def scramble(word):
     word = list(word)
     random.shuffle(word)
     return ''.join(word)
 
-
+# chain the string function together and output as one string
 def say(v = None):
   if v is None:
     return ''
@@ -38,7 +43,7 @@ def say(v = None):
   inner_adder.v = value # save value
   return inner_adder
 
-
+# generate a function that outputs the power of the base until the product reaches limit
 def powers(base, limit):
   power = 0;
   if (limit <= 0):
@@ -49,7 +54,7 @@ def powers(base, limit):
       yield product
       power += 1;
 
-
+# generate Pythagorean triples until the value reaches the limit
 def triples(limit):
   output = []
   # 29^2*2 is the first value > 40^2, so the smaller square has to be less than 29
@@ -60,7 +65,7 @@ def triples(limit):
         output.append((leg_small,int(leg_big_square**0.5),leg_long))
   return(output)
 
-
+# interleaves the input between the terms within first argument and the terms from the rest of the arguments
 def interleave(first, *therest):
     total_num = max(len(first),len(therest))
     output = []
@@ -71,6 +76,7 @@ def interleave(first, *therest):
         output.append(therest[i])
     return output
 
+# creat a Cylinder class that provides different callable attributes
 class Cylinder:
     "A circle with a 2-D center point and a radius."
     def __init__(self, radius = 1, height = 1):
@@ -99,9 +105,20 @@ class Cylinder:
         self.radius *= factor
         return self
 
+# build a parent function that returns the encryption and decrption function separately
+# AES Mode is used with pycrypto using IV and key given to encrypt the message
+def make_crypto_functions(key, IV):
+    mode = AES.MODE_CBC
+    encryptor = AES.new(key, mode, IV = IV)
+    decryptor = AES.new(key, mode, IV = IV)
+    def encryption(encode_message):
+        encode_output = encryptor.encrypt(encode_message)
+        return encode_output
+    def decryption(decode_message):
+        decode_output = decryptor.decrypt(decode_message)
+        return decode_output
+    return encryption, decryption
 
-def make_crypto_functions():
-    pass
 
 def random_name():
     pass
@@ -113,11 +130,14 @@ def random_name():
 
 ''' 
 
-(a,*b):= first argument is a, second to last is lambda
-
-cylinder
-use @property
-
 random name
 use requests module
+
+fetch data synchronously
+
+pass URL parameters via kwarg
+gender region
+do not pass all parameters via caller through uinames
+pass value 1 to uinames
+API parameter: amount
 '''

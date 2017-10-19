@@ -1,4 +1,3 @@
 {
-  "test/warmup_test.py::test_crypto": true,
   "test/warmup_test.py::test_random_name": true
 }
