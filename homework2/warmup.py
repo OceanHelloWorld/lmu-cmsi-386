@@ -8,7 +8,6 @@ import math
 import re
 import random
 import requests
-import json
 from Crypto.Cipher import AES
 
 def change(amount):
@@ -137,7 +136,7 @@ def make_crypto_functions(key, in_vector):
 
 
 def random_name(gender, region):
-    Request API for random name and output it synchronously
+    '''Request API for random name and output it synchronously'''
     if gender != 'male' or gender != 'female':
         raise ValueError("error Invalid gender")
     else:
