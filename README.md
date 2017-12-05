@@ -11,14 +11,7 @@ import Html.Attributes exposing (class)
 import Http exposing (get, Error, Response, Error(..))
 
 
-{-| This snippet uses the <ul> and <li> tags to create an unordered
-list of French grocery items. Notice that all occurrences of 'ul'
-and 'li' are followed by two lists. The first list is for any HTML
-attributes, and the second list is all the HTML nodes inside the
-tag.
-
-Et maintenant le voyage au supermarché!
-
+{-| 
 main =
   ul [class "grocery-list"]
     [ li [] [text "Quarters"]
