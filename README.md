@@ -45,14 +45,18 @@ main = stripQuotes "''\"\"a'''"
 import Html exposing (Html, ul, li, text)
 import List exposing (reverse, map, repeat)
 
-fibsUpTo : Int -> Int -> List Int
-fibsUpTo n x =
-    let accumulate fibs =
-        case fibs of
-            x1 :: x2 :: rest -> if x1 + x2 > n then fibs else accumulate ((x1+2)^(x1+1)::fibs)
-            _ -> []
-    in
-        reverse (accumulate [1, 0])
 
-main =
-    fibsUpTo 20 10 |> map (toString >> text >> repeat 1 >> li []) |> ul []
+expoPower base limit =
+    let
+        exponential count base =
+            if base^count > limit then []
+            else base^count :: exponential (count+1) base
+    in
+        exponential 0 base 
+        
+main = 
+  text <| toString <| expoPower 2 -5
+  
+  
+  
+  
